@@ -1,16 +1,15 @@
 import React from "react";
-import './style.css'
+import GrayImg from "../shared/gray_img";
 
-const Mercurio = () => {
+const Planet = (props) => {
     return(
         <div>
-            <ul>
-            <li>Mercúrio</li>
-            <p>Mercúrio é o menor e mais interno planeta do Sistema Solar</p>
-            <img className="gray-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Mercury_in_color_-_Prockter07-edit1.jpg/280px-Mercury_in_color_-_Prockter07-edit1.jpg"></img>
-            </ul>
+            <h4>{props.name}</h4>
+            <p>{props.description}</p>
+            <GrayImg img_url={props.img_url}/>
+            
         </div>
     )
 }
 
-export default Mercurio
+export default Planet

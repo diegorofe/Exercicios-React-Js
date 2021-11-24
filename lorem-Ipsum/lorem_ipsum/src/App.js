@@ -1,12 +1,12 @@
 import './App.css';
-import Hello from './components/hello.js'
-import LoremIpsum from './components/loremIpsum';
+import Planets from './components/planets'
+
 
 function App() {
   return (
    <div>
-      <Hello/>
-      <LoremIpsum/>      
+      <Planets/>
+    
    </div>
   );
 }

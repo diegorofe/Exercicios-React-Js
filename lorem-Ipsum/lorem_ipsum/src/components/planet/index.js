@@ -4,7 +4,7 @@ import DescriptionWithLink from "../shared/descriptionWithLink/descriptionWithLi
 
 const Planet = (props) => {
     return(
-        <div>
+        <div onClick={() => props.clickOnPlanet(props.name)}>
             <h4>{props.name}</h4>
             <p>
                 <DescriptionWithLink description={props.description} link={props.link}/>

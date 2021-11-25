@@ -5,8 +5,7 @@ import Planets from './components/planets'
 function App() {
   return (
    <div>
-      <Planets/>
-    
+      <Planets/>    
    </div>
   );
 }

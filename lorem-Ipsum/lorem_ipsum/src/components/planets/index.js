@@ -11,7 +11,6 @@ const Planets = () => {
             <h4>Planet List</h4>
             <hr/>
             <Planet name="Mercúrio"
-            description="Mercúrio é o menor e mais interno planeta do Sistema Solar, orbitando o Sol a cada 87,969 dias terrestres. "
             img_url="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Mercury_in_color_-_Prockter07-edit1.jpg/280px-Mercury_in_color_-_Prockter07-edit1.jpg"
             link="https://pt.wikipedia.org/wiki/Merc%C3%BArio_(planeta)"
             title_with_underline= {true}

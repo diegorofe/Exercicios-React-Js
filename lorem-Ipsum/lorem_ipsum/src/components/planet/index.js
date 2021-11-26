@@ -20,12 +20,7 @@ const Planet = (props) => {
             <DescriptionWithLink description={props.description} link={props.link}/>            
             <GrayImg img_url={props.img_url} gray={props.gray}/>
             
-            <h4>Satélites</h4>
-                <ul>
-                    {names.map((n) => 
-                        <li>Satélete {n}</li>  
-                    )}
-                </ul>
+     
                 <hr/>
         
         </div>

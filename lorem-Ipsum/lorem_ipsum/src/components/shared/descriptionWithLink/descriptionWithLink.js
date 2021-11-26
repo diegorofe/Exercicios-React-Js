@@ -8,7 +8,9 @@ const DescriptionWithLink = (props) =>{
         return (
             <Fragment>
                 <p>{props.description}</p>
+
                 <a href={props.link}>{props.link}</a>
+               <br/>
             </Fragment>
          );
     }else{

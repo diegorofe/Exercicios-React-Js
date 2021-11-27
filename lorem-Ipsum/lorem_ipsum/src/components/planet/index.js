@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState, useEffect } from "react";
 import GrayImg from "../shared/gray_img";
 import DescriptionWithLink from "../shared/descriptionWithLink/descriptionWithLink";
 
@@ -9,50 +9,37 @@ async function getSatellites(id) {
     
 }
 
+const Planet = (props) =>{
 
+   const[satellites, setSatellites] = useState([]);
 
-
-class Planet extends React.Component {
-   constructor(props){
-    super(props);
-    this.state = {
-        satellites: []
-    }
-   }
-
-   componentDidMount(){
-       getSatellites(this.props.id).then(data => {
-        this.setState(state => ({
-            satellites: data['satellites']
-        }))
-       })   
-          
+    useEffect(() => {
+        getSatellites(props.id).then(data => {
+            setSatellites(data['satellites']);
+        })
+    }, [])
+         
+    let title;
+    if(props.title_with_underline)
+        title =  <h4><u>{props.name}</u></h4>
+    else
+        title = <h4>{props.name}</h4>
+    return(
+    <div onClick={() => props.clickOnPlanet(props.name)}>
         
-    }
-   
-    render() {
-        
-            let title;
-            if(this.props.title_with_underline)
-                title =  <h4><u>{this.props.name}</u></h4>
-            else
-                title = <h4>{this.props.name}</h4>
-           return(
-           <div onClick={() => this.props.clickOnPlanet(this.props.name)}>
-               
-                {title}
-                <DescriptionWithLink description={this.props.description} link={this.props.link}/>            
-                <GrayImg img_url={this.props.img_url} gray={this.props.gray}/>
-                <h4>Satélites</h4>
-                <ul>
-                {this.state.satellites.map((satellite, index) =>
-                    <li key={index}>{satellite.name}</li>
-                )}
-                </ul>
-            <hr/>
-        </div>
-           )
-    }
+        {title}
+        <DescriptionWithLink description={props.description} link={props.link}/>            
+        <GrayImg img_url={props.img_url} gray={props.gray}/>
+        <h4>Satélites</h4>
+        <ul>
+        {satellites.map((satellite, index) =>
+            <li key={index}>{satellite.name}</li>
+        )}
+        </ul>
+    <hr/>
+    </div>
+    )
+    
 }
 
 export default Planet

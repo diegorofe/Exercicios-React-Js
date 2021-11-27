@@ -1,4 +1,4 @@
-import React, {Fragment, useState} from "react";
+import React, {Fragment, useState, useEffect} from "react";
 import Planet from "../planet";
 
 
@@ -8,27 +8,20 @@ async function getPlanets() {
      return data;
 }
 
-// componentDidMount(){
-//      getPlanets().then(data => {
-//           .setState(state => ({
-//                planets: data['planets']
-//           }))
-//      })
-// }
-
 const Planets = () => {
      const [planets, setPlanets] = useState([
-          {
-               "id": "mars",
-               "name": "Mars",
-               "description": "Mars is the fourth planet from the Sun and the second-smallest planet in the Solar System after Mercury. In English, Mars carries a name of the Roman god of war and is often referred to as the 'Red Planet'.",
-               "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/OSIRIS_Mars_true_color.jpg/220px-OSIRIS_Mars_true_color.jpg",
-               "link": "https://en.wikipedia.org/wiki/Mars"
-             }
+ 
      ])
+
+     useEffect( () => {
+          getPlanets().then(data => {
+           setPlanets(data['planets'])
+          })
+     }, [])
+
      const duplicateLast = () => {
           let last_planet = planets[planets.length - 1];
-          setPlanets(...planets, last_planet);
+          setPlanets([...planets, last_planet]);
      }
 
      const removelast = () => {
@@ -54,8 +47,7 @@ const Planets = () => {
                          img_url={planet.img_url}
                          link={planet.link}
                          key={index}
-
-                         
+                       
                                        
                     />  
                  )}                               

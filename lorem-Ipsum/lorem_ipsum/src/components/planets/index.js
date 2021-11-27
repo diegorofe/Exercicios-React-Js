@@ -1,5 +1,6 @@
 import React, {Fragment, useState, useEffect} from "react";
 import Planet from "../planet";
+import Form from './form'
 
 
 async function getPlanets() {
@@ -19,15 +20,8 @@ const Planets = () => {
           })
      }, [])
 
-     const duplicateLast = () => {
-          let last_planet = planets[planets.length - 1];
-          setPlanets([...planets, last_planet]);
-     }
-
-     const removelast = () => {
-          let new_planets = [...planets];
-          new_planets.pop();
-          setPlanets(new_planets);
+     const addPlanet = (new_planet) => {
+          setPlanets([...planets, new_planet])
      }
 
  
@@ -35,9 +29,9 @@ const Planets = () => {
                <Fragment> 
                     <h4>Planet List</h4>
                     <hr/>
-                    <button onClick={removelast}>Remove Last</button>
-                    <button onClick={duplicateLast}>Duplicate Last</button>
+                    <Form addPlanet={addPlanet} />
                     <hr/>
+                    
                {planets.map((planet, index) =>
                     
                     <Planet 

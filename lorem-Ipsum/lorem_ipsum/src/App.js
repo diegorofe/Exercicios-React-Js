@@ -1,12 +1,14 @@
 import './App.css';
 import Planets from './components/planets'
+import Routes from './routes'
 
 
 function App() {
   return (
-   <div class="div-app">
-      <Planets/>    
-   </div>
+   <div>
+     <Routes/> 
+   </div>    
+   
   );
 }
 

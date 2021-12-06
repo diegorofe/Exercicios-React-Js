@@ -3,20 +3,29 @@ import GrayImg from "../shared/gray_img";
 import DescriptionWithLink from "../shared/descriptionWithLink/descriptionWithLink";
 import Form from "./form";
 
-async function getSatellites(id) {
+import { useParams } from 'react-router-dom'
+
+
+async function getPlanet(id) {
     let response = await fetch(`http://localhost:3000/api/${id}.json`)
     let data = await response.json();
     return data;
+
     
 }
 
-const Planet = (props) =>{
+
+const Planet = () =>{
 
    const[satellites, setSatellites] = useState([]);
+const [planet, setPlanet] = useState({});
+   let { id } = useParams();
+
 
     useEffect(() => {
-        getSatellites(props.id).then(data => {
+        getPlanet(id).then(data => {
             setSatellites(data['satellites']);
+            setPlanet(data['data']);
         })
     }, [])
 
@@ -25,15 +34,15 @@ const Planet = (props) =>{
     }
          
     let title;
-    if(props.title_with_underline)
-        title =  <h4><u>{props.name}</u></h4>
+    if(planet.title_with_underline)
+        title =  <h4><u>{planet.name}</u></h4>
     else
-        title = <h4>{props.name}</h4>
+        title = <h4>{planet.name}</h4>
     return(
     <div>        
         {title}
-        <DescriptionWithLink description={props.description} link={props.link}/>            
-        <GrayImg img_url={props.img_url} gray={props.gray}/>
+        <DescriptionWithLink description={planet.description} link={planet.link}/>            
+        <GrayImg img_url={planet.img_url} gray={planet.gray}/>
         <h4>Satélites</h4>
         <Form addSatellite={addSatellite}/>
         <hr/>
@@ -49,3 +58,4 @@ const Planet = (props) =>{
 }
 
 export default Planet
+
